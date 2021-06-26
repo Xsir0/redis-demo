@@ -1,0 +1,14 @@
+2021-06-26 12:12:44 [INFO] - Starting RedisDemoApplication using Java 1.8.0_281 on xsir.local with PID 40919 (/Users/xsir/IdeaProjects/redis-demo/target/classes started by xsir in /Users/xsir/IdeaProjects/redis-demo)
+2021-06-26 12:12:44 [INFO] - No active profile set, falling back to default profiles: default
+2021-06-26 12:12:45 [INFO] - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-06-26 12:12:45 [INFO] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-06-26 12:12:45 [INFO] - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2021-06-26 12:12:45 [INFO] - Tomcat initialized with port(s): 8080 (http)
+2021-06-26 12:12:45 [INFO] - Initializing ProtocolHandler ["http-nio-8080"]
+2021-06-26 12:12:45 [INFO] - Starting service [Tomcat]
+2021-06-26 12:12:45 [INFO] - Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-06-26 12:12:45 [INFO] - Initializing Spring embedded WebApplicationContext
+2021-06-26 12:12:45 [INFO] - Root WebApplicationContext: initialization completed in 1024 ms
+2021-06-26 12:12:46 [INFO] - Starting ProtocolHandler ["http-nio-8080"]
+2021-06-26 12:12:46 [INFO] - Tomcat started on port(s): 8080 (http) with context path ''
+2021-06-26 12:12:46 [INFO] - Started RedisDemoApplication in 2.286 seconds (JVM running for 2.998)

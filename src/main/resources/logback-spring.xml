@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+
+    <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) [%green(%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-},%X{IP})] %X{url}|%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%cyan(%msg%n)"/>
+
+    <!--<property name="CONSOLE_LOG_PATTERN"-->
+    <!--value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) [%green(%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-},%X{IP})] %X{url}|%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"/>-->
+
+    <!-- 定义参数 -->
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n" />
+    <!-- 控制台打印设置 -->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="consoleAppender" />
+    </root>
+
+
+</configuration>
