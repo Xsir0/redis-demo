@@ -32,7 +32,7 @@ public class SecKillServiceImplSafe implements SecKillService {
     @Override
     public String secKill(String uId, String pid) {
         jedis = jedisPool.getResource();
-        jedis.select(RedisDB.ONE.getOrdinal());
+        jedis.select(RedisDB.ZERO.getOrdinal());
 
         // log.info("uid: {}, pid: {}",uId,pid);
 

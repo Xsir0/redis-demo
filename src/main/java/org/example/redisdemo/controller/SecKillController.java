@@ -26,11 +26,11 @@ public class SecKillController {
     // @Autowired
     // private SecKillService secKillService;
 
-    // @Resource(name = "safeSecKill")
-    // private SecKillService secKillService;
-
-    @Resource(name = "scriptSecKill")
+    @Resource(name = "safeSecKill")
     private SecKillService secKillService;
+
+    // @Resource(name = "scriptSecKill")
+    // private SecKillService secKillService;
 
 
     @GetMapping

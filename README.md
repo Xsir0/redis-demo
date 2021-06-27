@@ -3,7 +3,10 @@
 ```$java
 ```
 2. 程序在第一次启动后进行秒杀总是存在各种问题，但是进行第二次秒杀时问题就消失了。
-
+```$xslt
+该项调用的时候不应该放在成员变量为止进行对象引用初始化；而应该放在方法内部；
+private static Jedis jedis = null;
+```
 
 
 # 测试结果
@@ -29,3 +32,5 @@
 ```$xslt
 08:19:19.575 [main] INFO org.example.redisdemo.concurrent.ConcurrentSecKill - count:1000, 总耗时：2353
 ```
+
+# 分布式锁相关完善完毕

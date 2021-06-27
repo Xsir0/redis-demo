@@ -2,6 +2,7 @@ package org.example.redisdemo.util.redis;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -38,7 +39,7 @@ public class RedisConfig {
     @Value("${spring.redis.jedis.pool.max-active}")
     private int maxTotal;
 
-    @Bean(name = "redisPoolFactory")
+    @Bean(name = "jedisPool")
     public  JedisPool redisPoolFactory() {
         // JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         // jedisPoolConfig.setMaxIdle(maxIdle);
