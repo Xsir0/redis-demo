@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -22,15 +23,18 @@ import java.util.UUID;
 @RequestMapping("/secKill")
 public class SecKillController {
 
-    @Autowired
-    private SecKillService secKillService;
+    // @Autowired
+    // private SecKillService secKillService;
 
     // @Resource(name = "safeSecKill")
     // private SecKillService secKillService;
 
+    @Resource(name = "scriptSecKill")
+    private SecKillService secKillService;
+
 
     @GetMapping
-    public String secKill(@RequestParam(required = true) String pid){
+    public String secKill(@RequestParam(required = true) String pid) throws IOException {
         String uid = UUID.randomUUID().toString().replace("-", "");
         return secKillService.secKill(uid,pid);
     }

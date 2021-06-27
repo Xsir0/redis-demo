@@ -59,7 +59,7 @@ public class ConcurrentSecKill {
 
     }
 
-    public static void add(){
+    public synchronized static void add(){
         count++;
         String result = OkHttpUtils.get("http://localhost:8080/secKill?pid=123", null, null);
         log.info("secKill result: {}",result);
