@@ -27,10 +27,10 @@ public class JedisUtil {
 
     static {
         // web
-        jedisPool = (JedisPool) SpringContextUtil.getBean("jedisPool");
+        // jedisPool = (JedisPool) SpringContextUtil.getBean("jedisPool");
 
         // java
-        // jedisPool = new JedisPool();
+        jedisPool = new JedisPool();
     }
 
     /**
@@ -66,7 +66,7 @@ public class JedisUtil {
                return true;
            }
 
-           // 方式二
+           // 方式二 性能优于 方式一
            // String result = jedis.set(key, value, "NX", "PX", expiresMillis);
            // if (result != null && result.equalsIgnoreCase("OK")) {
            //     return true;

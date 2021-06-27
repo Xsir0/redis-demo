@@ -27,6 +27,9 @@ public class LockTest {
     private static int count=0;
 
     public static void main(String[] args) throws InterruptedException {
+
+        long startTime = System.currentTimeMillis();
+
         count =0;
 
         final CountDownLatch countDownLatch = new CountDownLatch(totalThread);
@@ -53,7 +56,7 @@ public class LockTest {
         }
         countDownLatch.await();
         executor.shutdown();
-        log.info("final count: {},countDownLatch: {}",count,countDownLatch.getCount());
+        log.info("final count:{}, 总耗时：{}",count,System.currentTimeMillis()-startTime);
     }
     public static void count(){
         String key = "testKey";

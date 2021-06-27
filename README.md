@@ -34,3 +34,27 @@ private static Jedis jedis = null;
 ```
 
 # 分布式锁相关完善完毕
+
+1000请求 100并发的测试情况；
+
+**方式一**
+
+```$xslt
+06:29:18.265 [main] INFO org.example.redisdemo.distributedLock.LockTest - final count:1000, 总耗时：3843
+```
+
+**方式二**
+
+
+```$xslt
+06:33:01.604 [main] INFO org.example.redisdemo.distributedLock.LockTest - final count:1000, 总耗时：3004
+```
+
+方式而依赖特定版本：
+```$xml
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+```
