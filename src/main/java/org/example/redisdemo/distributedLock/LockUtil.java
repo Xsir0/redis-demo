@@ -33,23 +33,48 @@ public class LockUtil {
      * @return boolean
      */
     public static boolean lock(String key,String value){
-        return lock(key,value,DEFAULT_LOCK_TIME_MILLIS);
+        return tryLock(key,value);
     }
 
-    // public static boolean lock(String key,String value,long lockTimeoutMillis){
-    //     return lock(key,value,false,0,lockTimeoutMillis,0);
-    // }
 
+    /**
+     * @desc 无限重试
+     * @author xsir
+     * @date 2021/6/28 下午8:46
+     * @param key
+     * @param value
+     * @param lockTimeMillis
+     * @return boolean
+     */
     public static boolean tryLock(String key,String value){
-        return tryLock(key,value,DEFAULT_RETRY_TIMES);
+        return lock(key,value,true,0,DEFAULT_LOCK_TIME_MILLIS,0);
     }
 
+
+    /**
+     * @desc 默认重试次数
+     * @author xsir
+     * @date 2021/6/28 下午8:49
+     * @param key
+     * @param value
+     * @param lockTimeMillis
+     * @return boolean
+     */
     public static boolean tryLock(String key,String value,long lockTimeMillis){
         return tryLock(key,value,DEFAULT_RETRY_TIMES,lockTimeMillis);
     }
 
+    /**
+     * @desc 默认过期时间
+     * @author xsir
+     * @date 2021/6/28 下午8:49
+     * @param key
+     * @param value
+     * @param retryTimes
+     * @return boolean
+     */
     public static boolean tryLock(String key,String value,int retryTimes){
-        return tryLock(key,value,retryTimes,DEFAULT_TRY_LOCK_TIMEOUT_MILLIS);
+        return tryLock(key,value,retryTimes,DEFAULT_LOCK_TIME_MILLIS);
     }
 
     public static boolean tryLock(String key,String value,int retryTimes,long lockTimeMillis){
@@ -59,20 +84,6 @@ public class LockUtil {
     public static boolean tryLock(String key,String value,int retryTimes,long lockTimeMillis,long retryTimeoutMillis){
         return lock(key,value,true,retryTimes,lockTimeMillis,retryTimeoutMillis);
     }
-
-    private static boolean lock(String key,String value,long lockTimeMillis){
-        log.info("开始获取锁 >>>  key: {}, value: {}",key,value);
-        boolean lockStatus = JedisUtil.lock(key, value, lockTimeMillis);
-        if (lockStatus){
-            log.info("成功 >>> key: {}, value: {}",key,value);
-            return true;
-        }
-        sleep(DEFAULT_TRY_LOCK_TIMEOUT_MILLIS);
-        return lock(key,value,lockTimeMillis);
-
-    }
-
-
 
 
     /**
@@ -102,8 +113,12 @@ public class LockUtil {
         }
 
         // 获取sleep时间
-        long sleepMillis = getSleepMillis(false, retryTimeMillis);
-
+        long sleepMillis;
+        if (retryTimeMillis == 0){
+            sleepMillis = DEFAULT_TRY_LOCK_TIMEOUT_MILLIS;
+        }else {
+            sleepMillis = getSleepMillis(false, retryTimeMillis);
+        }
         // sleep后重新获取锁
         sleep(sleepMillis);
 
